@@ -1,0 +1,46 @@
+{% extends "socialnetwork/base.html" %}
+
+{% block nav-top %}
+    <div>
+        <a href="{% url 'myprofile' %}" id="id_nav_profile">
+            <u>{{user.first_name}} {{user.last_name}}</u>
+        </a>
+    </div>
+    
+{% endblock %}
+
+{% block nav-bot %}
+    <div>
+        <a href="{% url 'global' %}" id="id_nav_global_stream">
+            <u>Global</u>
+        </a>
+
+        <a href="{% url 'follower' %}" id="id_nav_follower_stream">
+            <u>Follower</u>
+        </a>
+
+        <a href="{% url 'logout' %}" id="id_nav_logout">
+            <u>Logout</u>
+        </a>
+    </div>      
+{% endblock %}
+
+{% block follower-stream %}
+    <p id="id_page_name">Follower Stream</p>
+        {% for post in posts %}
+            {% if post.user in request.user.profile.following.all %}
+
+                <div id="id_post_div_{{post.id}}">
+                    
+                    <a href="{% url 'othersprofile' post.user.profile.id %}" id="id_profile_link_{{post.id}}">
+                        Post by <span id="id_post_profile_{{post.id}}">{{post.user.first_name}} {{post.user.last_name}}</span> - 
+                        <span id="id_post_text_{{post.id}}"> {{post.text}} </span> -- 
+                        <span id="id_post_date_time_{{post.id}}">{{post.creation_time|date:"n/j/Y g:i A"}}</span>
+                    </a>
+                        
+                </div>
+            {% endif %}
+        {% endfor %}
+
+    
+{% endblock %}

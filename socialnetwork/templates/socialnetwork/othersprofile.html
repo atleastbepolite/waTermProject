@@ -1,0 +1,211 @@
+{% extends "socialnetwork/base.html" %}
+
+{% block nav-top %}
+    <div>
+        <a href="{% url 'myprofile' %}" id="id_nav_profile">
+            <u>{{user.first_name}} {{user.last_name}}</u>
+        </a>
+    </div>
+    
+{% endblock %}
+
+{% block nav-bot %}
+    <div>
+        <a href="{% url 'global' %}" id="id_nav_global_stream">
+            <u>Back to chalkboard</u>
+        </a>
+
+        
+
+        <a href="{% url 'logout' %}" id="id_nav_logout">
+            <u>Logout</u>
+        </a>
+    </div>      
+{% endblock %}
+
+{% block other-profile %}
+
+
+
+    <div>
+        <script>
+            function test() {
+                window.location.href = "{% url 'test3' %}" 
+            }
+        </script>
+
+        <div class="profilegrid">
+            <div>
+                <p id="id_page_name">{{profile.user.first_name}} {{profile.user.last_name}}'s Room</p>
+    
+                {% if not profile.picture %}
+                    <img src = "https://st3.depositphotos.com/4111759/13425/v/600/depositphotos_134255532-stock-illustration-profile-placeholder-male-default-profile.jpg" id="id_user_picture" alt="profilepicture">
+                {% else %}
+                    <img src = "{% url 'photo' profile.user.id %}" id="id_user_picture" alt="profilepicture"> 
+                {% endif %}
+    
+                <div id="id_user_bio">
+                    {{profile.bio}}
+                </div>
+
+            </div>
+            <div>
+                {% if profile.user in request.user.profile.following.all %}
+                    <form action="{% url 'unfollow' profile.user.id %}" method="post">
+                        <button id="id_unfollow">unfollow</button>
+                        {% csrf_token %}
+                    </form>
+                {% else %}
+                    <form action="{% url 'follow' profile.user.id %}" method="post">
+                        <button id="id_follow">follow</button>
+                        {% csrf_token %}
+                    </form>
+                {% endif %}
+            </div>
+            <div>
+                <button onclick="test()">BackToMyHome </button>
+            </div>
+        </div>
+
+        
+
+
+        {% load static %}
+
+        <div class ="myprofile" style="background: url('{% static 'socialnetwork/image/temp.png' %}')">
+            
+            <div class = "picgrid" style = "grid-row-gap: 165px">
+                <div>
+                    {% if not profile.picture1 %}
+                    <img src = "https://st3.depositphotos.com/4111759/13425/v/600/depositphotos_134255532-stock-illustration-profile-placeholder-male-default-profile.jpg" id="id_user_picture" alt="profilepicture">
+                    {% else %}
+                        <img src = "{% url 'photo1' profile.user.id %}" id="id_user_picture1" alt="profilepicture1" width ="200" height="200"> 
+                    {% endif %}
+                    <form enctype="multipart/form-data" action="{% url 'myprofile' %}" method="POST" class="add-form">
+                        <table>
+                            {{picture1Form}}
+                        </table>
+                        {% csrf_token %}
+                        
+                        
+                    </form>
+                </div>
+                <div>
+                    {% if not profile.picture2 %}
+                        <img src = "https://st3.depositphotos.com/4111759/13425/v/600/depositphotos_134255532-stock-illustration-profile-placeholder-male-default-profile.jpg" id="id_user_picture" alt="profilepicture">
+                    {% else %}
+                        <img src = "{% url 'photo2' profile.user.id %}" id="id_user_picture2" alt="profilepicture2" width ="200" height="200"> 
+                    {% endif %}
+        
+                    <form enctype="multipart/form-data" action="{% url 'myprofile' %}" method="POST" class="add-form">
+                        <table>
+                            {{picture2Form}}
+                        </table>
+                        {% csrf_token %}
+                    
+                    </form>
+                </div>
+                <div>
+                    {% if not profile.picture3 %}
+                        <img src = "https://st3.depositphotos.com/4111759/13425/v/600/depositphotos_134255532-stock-illustration-profile-placeholder-male-default-profile.jpg" id="id_user_picture" alt="profilepicture">
+                    {% else %}
+                        <img src = "{% url 'photo3' profile.user.id %}" id="id_user_picture3" alt="profilepicture3" width ="200" height="200"> 
+                    {% endif %}
+        
+                    <form enctype="multipart/form-data" action="{% url 'myprofile' %}" method="POST" class="add-form">
+                        <table>
+                            {{picture3Form}}
+                        </table>
+                        {% csrf_token %}
+                    </form>
+                </div>
+                <div>
+                    {% if not profile.picture4 %}
+                        <img src = "https://st3.depositphotos.com/4111759/13425/v/600/depositphotos_134255532-stock-illustration-profile-placeholder-male-default-profile.jpg" id="id_user_picture" alt="profilepicture">
+                    {% else %}
+                        <img src = "{% url 'photo4' profile.user.id %}" id="id_user_picture4" alt="profilepicture4" width ="200" height="200"> 
+                    {% endif %}
+        
+                    <form enctype="multipart/form-data" action="{% url 'myprofile' %}" method="POST" class="add-form">
+                        <table>
+                            {{picture4Form}}
+                        </table>
+                        {% csrf_token %}
+                    </form>
+                </div>
+                <div>
+                    {% if not profile.picture5 %}
+                        <img src = "https://st3.depositphotos.com/4111759/13425/v/600/depositphotos_134255532-stock-illustration-profile-placeholder-male-default-profile.jpg" id="id_user_picture" alt="profilepicture">
+                    {% else %}
+                        <img src = "{% url 'photo5' profile.user.id %}" id="id_user_picture5" alt="profilepicture5" width ="200" height="200"> 
+                    {% endif %}
+        
+                    <form enctype="multipart/form-data" action="{% url 'myprofile' %}" method="POST" class="add-form">
+                        <table>
+                            {{picture5Form}}
+                        </table>
+                        {% csrf_token %}
+                    </form>
+                </div>
+                <div>
+                    {% if not profile.picture6 %}
+                        <img src = "https://st3.depositphotos.com/4111759/13425/v/600/depositphotos_134255532-stock-illustration-profile-placeholder-male-default-profile.jpg" id="id_user_picture" alt="profilepicture">
+                    {% else %}
+                        <img src = "{% url 'photo6' profile.user.id %}" id="id_user_picture6" alt="profilepicture6" width ="200" height="200"> 
+                    {% endif %}
+        
+                    <form enctype="multipart/form-data" action="{% url 'myprofile' %}" method="POST" class="add-form">
+                        <table>
+                            {{picture6Form}}
+                        </table>
+                        {% csrf_token %}
+                    </form>
+                </div>
+                <div>
+                    {% if not profile.picture7 %}
+                        <img src = "https://st3.depositphotos.com/4111759/13425/v/600/depositphotos_134255532-stock-illustration-profile-placeholder-male-default-profile.jpg" id="id_user_picture" alt="profilepicture">
+                    {% else %}
+                        <img src = "{% url 'photo7' profile.user.id %}" id="id_user_picture7" alt="profilepicture7" width ="200" height="200"> 
+                    {% endif %}
+        
+                    <form enctype="multipart/form-data" action="{% url 'myprofile' %}" method="POST" class="add-form">
+                        <table>
+                            {{picture7Form}}
+                        </table>
+                        {% csrf_token %}
+                    </form>
+                </div>
+                <div>
+                    {% if not profile.picture8 %}
+                        <img src = "https://st3.depositphotos.com/4111759/13425/v/600/depositphotos_134255532-stock-illustration-profile-placeholder-male-default-profile.jpg" id="id_user_picture" alt="profilepicture">
+                    {% else %}
+                        <img src = "{% url 'photo8' profile.user.id %}" id="id_user_picture8" alt="profilepicture8" width ="200" height="200"> 
+                    {% endif %}
+        
+                    <form enctype="multipart/form-data" action="{% url 'myprofile' %}" method="POST" class="add-form">
+                        <table>
+                            {{picture8Form}}
+                        </table>
+                        {% csrf_token %}
+                    </form>
+                </div>
+                <div>
+                    {% if not profile.picture9 %}
+                        <img src = "https://st3.depositphotos.com/4111759/13425/v/600/depositphotos_134255532-stock-illustration-profile-placeholder-male-default-profile.jpg" id="id_user_picture" alt="profilepicture">
+                    {% else %}
+                        <img src = "{% url 'photo9' profile.user.id %}" id="id_user_picture9" alt="profilepicture9" width ="200" height="200"> 
+                    {% endif %}
+        
+                    <form enctype="multipart/form-data" action="{% url 'myprofile' %}" method="POST" class="add-form">
+                        <table>
+                            {{picture9Form}}
+                        </table>
+                        {% csrf_token %}
+                    </form>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+ 
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends "socialnetwork/base.html" %}
+
+{% block nav-bot %}
+    <div>
+        <a href="{% url 'register' %}" id="id_register_link">
+            <u>Register</u>
+        </a>
+    </div>
+{% endblock %}
+
+{% block content %}
+    <script>
+        function test() {
+            window.location.href = "{% url 'test' %}" 
+        }
+    </script>
+    <p id="id_page_name">Login</p>
+
+    <form method="post" action="{% url 'login' %}">
+        <table>
+            {{form}}
+        </table>
+        {% csrf_token %}
+        
+        <button type="submit" id="id_login_button">Submit</button>
+    </form>
+
+    <button onclick="test()">BackToMainZone </button>
+    
+
+{% endblock %}

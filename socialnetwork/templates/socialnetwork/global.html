@@ -1,0 +1,60 @@
+{% extends "socialnetwork/base.html" %}
+
+{% block nav-top %}
+    <div>
+        <a href="{% url 'myprofile' %}" id="id_nav_profile">
+            <u>{{user.first_name}} {{user.last_name}}</u>
+        </a>
+    </div>
+    
+{% endblock %}
+
+{% block nav-bot %}
+    <div>
+
+        <a href="{% url 'logout' %}" id="id_nav_logout">
+            <u>Logout</u>
+        </a>
+    </div>      
+{% endblock %}
+
+{% block global-stream %}
+    {% load static %}
+    <script>
+        function test() {
+            window.location.href = "{% url 'globalroom' %}" 
+        }
+    </script>
+    <div class="globalBoard" style="background: url('{% static 'socialnetwork/image/chalkboard.png' %}');background-repeat: no-repeat; background-size:cover; width:1600px;">
+        <p id="id_page_name">&nbsp;&nbsp;&nbsp;Introduce yourself to your neighbors</p>
+        <label for="newpost">&nbsp;&nbsp;&nbsp;Interesting Notes:</label>
+        <form method="post" action="{% url 'newpost' %}"> 
+            &nbsp;&nbsp;
+            <input type ="text" id="id_post_input_text" name="newpost">
+            <button type="submit" id="id_post_button">Submit</button>
+            {% csrf_token %}
+        </form>
+        <br>
+
+        <ol style="list-style: none;">
+            {% for post in posts %}
+                <li>
+                    <td>
+                        <a href="{% url 'othersprofile' post.user.profile.id %}" id="id_profile_link_{{post.id}}">
+                            <div id="id_post_div_{{post.id}}">
+                                &nbsp;I am <span id="id_post_profile_{{post.id}}">{{post.user.first_name}} {{post.user.last_name}}</span> - 
+                                <span id="id_post_text_{{post.id}}"> {{post.text}} </span> -- 
+                                <span id="id_post_date_time_{{post.id}}">{{post.creation_time|date:"n/j/Y g:i A"}}</span>
+                            </div>
+                        </a>
+                    </td>
+                </li>
+            {% endfor %}
+        </ol>
+        
+        &nbsp;&nbsp;
+        <button onclick="test()">BackToBuilding </button>
+    </div>
+    
+
+{% endblock %}

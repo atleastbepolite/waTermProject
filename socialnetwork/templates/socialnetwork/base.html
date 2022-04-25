@@ -1,0 +1,62 @@
+<!doctype html>
+<html>
+	<head>
+	    <meta charset="utf-8">
+	    {% load static %}
+		<link href="{% static 'socialnetwork/base.css' %}" rel="stylesheet" type="text/css">
+		<title> {% block title %} SocialNetwork {% endblock %} </title>
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+	</head>
+
+	
+	<script>
+		var b = "{% url 'test' %}"
+	</script>
+	
+
+	<body>
+		<div class="header-div" id="id_header_div">
+			<div class="nav-top">
+				{% block nav-top %}
+				{% endblock %}
+			</div>
+			<p id="id_site_name">WebApp Project Tempname</p>
+			<div class="nav-bot">
+				{% block nav-bot %}
+				{% endblock %}
+			</div>
+		</div>
+
+	    <div class="global-stream">
+			{% block global-stream %}
+			{% endblock %}
+		</div>
+
+		<div class="content">
+			{% block content %}
+			{% endblock %}
+		</div>
+
+		<div class="follower-stream">
+			{% block follower-stream %}
+			{% endblock %}
+		</div>
+
+		<div class="my-profile">
+			{% block my-profile %}
+			{% endblock %}
+		</div>
+
+		<div class="my-pictures">
+			{% block my-pictures %}
+			{% endblock %}
+		</div>
+
+		<div class="other-profile">
+			{% block other-profile %}
+			{% endblock %}
+		</div>
+	</body>
+</html>

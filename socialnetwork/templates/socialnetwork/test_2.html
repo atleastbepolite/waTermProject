@@ -1,0 +1,13 @@
+{% extends "socialnetwork/base.html" %}
+
+{% block content %}
+<script>
+function test() {
+    window.location.href = "{% url 'test' %}" 
+}
+</script>
+   
+<button onclick="test()">BackToMainZone </button>
+    
+
+{% endblock %}
